@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# Hook: PostToolUse:Bash matcher for `dual_score.py` or `kdd/evaluator.py`
+# Hook: PostToolUse:Bash matcher for a benchmark scoring command (e.g. `score.py` / `evaluator.py`)
 #
 # Warns if the user/agent is scoring a bench whose Docker container is
 # still running — the resulting aggregate is a mid-run snapshot inflated
 # by `col_0\n` placeholder predictions on tasks still in flight, not a
 # final score.
 #
-# Rationale: on 2026-05-19 two false "REGRESSION ALERT" diagnoses fired
-# on mid-run snapshots of v7-fix2 and v7-fix3 benches. Final scores were
-# 1.00 and 0.98 respectively, not regressions.
+# Rationale: false "REGRESSION ALERT" diagnoses have fired on mid-run
+# snapshots whose final scores were actually fine — the aggregate was just
+# read before the scoring container finished.
 #
 # Action: extract the `output` directory path from the command, find any
 # container with that path bind-mounted to /output, check status. If
@@ -21,7 +21,8 @@ set -u
 CMD="${CLAUDE_TOOL_INPUT_COMMAND:-${CLAUDE_BASH_COMMAND:-${1:-}}}"
 
 # Bail unless this is a scoring command on a real artifact root
-if ! echo "$CMD" | grep -qE '(dual_score\.py|kdd/evaluator\.py|kdd\.evaluator)'; then
+# Customize this matcher to your own scoring command(s):
+if ! echo "$CMD" | grep -qE '(score\.py|evaluator\.py)'; then
   exit 0
 fi
 

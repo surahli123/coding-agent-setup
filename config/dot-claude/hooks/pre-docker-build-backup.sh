@@ -6,8 +6,8 @@
 # the build source.
 #
 # Rationale: macOS launchd com.apple.periodic-daily wipes /tmp/ on reboot.
-# The v9-v6sd source `/tmp/v6-overlay-build/overlay/submit_main_with_sd.py`
-# was lost in the 2026-05-18 crash exactly this way.
+# A build source living under /tmp/ was lost in a crash + reboot exactly this way,
+# which is what motivated this hook.
 #
 # Action: extract the `-f <path>` arg from the docker build command;
 # if `-f` points to /tmp/, cp -r the parent directory to
