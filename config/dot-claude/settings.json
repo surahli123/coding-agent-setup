@@ -1,0 +1,233 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "permissions": {
+    "deny": [
+      "Read(**/node_modules/**)",
+      "Read(**/.next/**)",
+      "Read(**/.venv/**)",
+      "Read(**/__pycache__/**)",
+      "Read(**/.git/**)",
+      "Read(**/*.lock)",
+      "Read(**/package-lock.json)",
+      "Read(**/pnpm-lock.yaml)",
+      "Read(**/*.min.js)",
+      "Read(**/*.map)"
+    ],
+    "defaultMode": "auto"
+  },
+  "skillOverrides": {
+    "ouroboros:welcome": "off",
+    "ouroboros:tutorial": "off",
+    "ouroboros:help": "off",
+    "ouroboros:setup": "off",
+    "ouroboros:update": "off",
+    "ouroboros:brownfield": "off",
+    "ouroboros:openclaw": "off",
+    "ouroboros:ralph": "off",
+    "ouroboros:pm": "off",
+    "ouroboros:publish": "off",
+    "docx": "off",
+    "pptx": "off",
+    "xlsx": "off",
+    "pdf": "off",
+    "frontend-design": "off",
+    "mcp-builder": "off",
+    "skill-creator": "off",
+    "canvas-design": "off",
+    "brand-guidelines": "off",
+    "internal-comms": "off",
+    "theme-factory": "off",
+    "webapp-testing": "off",
+    "slack-gif-creator": "off",
+    "web-artifacts-builder": "off",
+    "algorithmic-art": "off",
+    "doc-coauthoring": "off",
+    "superpowers:using-superpowers": "off",
+    "superpowers:using-git-worktrees": "off",
+    "superpowers:dispatching-parallel-agents": "off",
+    "superpowers:subagent-driven-development": "off",
+    "superpowers:writing-skills": "off",
+    "superpowers:requesting-code-review": "off",
+    "superpowers:receiving-code-review": "off",
+    "superpowers:finishing-a-development-branch": "off",
+    "superpowers:write-plan": "off",
+    "superpowers:execute-plan": "off",
+    "superpowers:brainstorm": "off",
+    "kaizen:kaizen": "off",
+    "kaizen:analyse": "off",
+    "kaizen:analyse-problem": "off",
+    "kaizen:cause-and-effect": "off",
+    "sdd:create-ideas": "off",
+    "sdd:implement": "off",
+    "sdd:plan": "off",
+    "sdd:brainstorm": "off",
+    "sdd:add-task": "off"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(git commit*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "branch=$(git branch --show-current 2>/dev/null); echo \"Committing on branch: $branch\"; if [ \"$branch\" = \"main\" ] || [ \"$branch\" = \"master\" ]; then echo '⚠️  WARNING: About to commit to main/master!' >&2; fi"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/pre-commit-test-gate.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash(gh pr merge*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/pre-merge-review-gate.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/agent-isolation-check.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash(docker build*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/pre-docker-build-backup.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "WebSearch|WebFetch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/pre-websearch-budget.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/post-edit-pytest.sh"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/post-claudemd-budget.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/post-bench-score-gate.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/post-action-ledger.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/stop-ledger-reconcile.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": []
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "true"
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "reflexion@context-engineering-kit": true,
+    "kaizen@context-engineering-kit": false,
+    "sdd@context-engineering-kit": false,
+    "docs@context-engineering-kit": false,
+    "git@context-engineering-kit": true,
+    "document-skills@anthropic-agent-skills": false,
+    "evals-skills@hamelsmu-evals-skills": false,
+    "oh-my-claudecode@omc": true,
+    "ouroboros@ouroboros": false,
+    "codex@openai-codex": true,
+    "caveman@caveman": true,
+    "vercel@claude-plugins-official": false
+  },
+  "extraKnownMarketplaces": {
+    "baoyu-skills": {
+      "source": {
+        "source": "github",
+        "repo": "jimliu/baoyu-skills"
+      }
+    },
+    "hamelsmu-evals-skills": {
+      "source": {
+        "source": "github",
+        "repo": "hamelsmu/evals-skills"
+      }
+    },
+    "omc": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/Yeachan-Heo/oh-my-claudecode.git"
+      }
+    },
+    "ouroboros": {
+      "source": {
+        "source": "github",
+        "repo": "Q00/ouroboros"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true
+}

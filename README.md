@@ -1,6 +1,6 @@
 # claude-code-setup
 
-My [Claude Code](https://claude.com/claude-code) setup — reusable workflows now, with config (`CLAUDE.md`, hooks, settings) to follow after a privacy pass.
+My [Claude Code](https://claude.com/claude-code) setup — reusable workflows plus my privacy-sanitized `CLAUDE.md`, hooks, and settings.
 
 ## Contents
 
@@ -9,7 +9,10 @@ My [Claude Code](https://claude.com/claude-code) setup — reusable workflows no
   - `x-research.js` — X/Twitter deep research: 4 parallel Sonnet agents (4 lenses) → 1 Opus synthesis. Cost-disciplined (mechanical → Sonnet, synthesis → Opus).
 - **[`docs/`](docs/)** — how this setup is built
   - `building-workflows.md` — design decisions + the debugging lessons behind the workflows.
-- **`config/`** *(coming soon)* — sanitized `CLAUDE.md`, hooks, and settings.
+- **[`config/`](config/)** — my privacy-sanitized Claude Code config (templated where personal)
+  - `CLAUDE.md` + `dot-claude/CLAUDE.md` — global instructions & subagent routing (identity/domain are `_Personalize_` placeholders).
+  - `dot-claude/settings.json` + `dot-claude/hooks/` — permissions, hook wiring, and the hook scripts (ledger, gates, budgets).
+  - `dot-claude/refs/` — lazy-loaded playbooks (circuit-breaker, evidence-first, karpathy, …) + rule rationale.
 
 ## Install the workflows
 ```bash
@@ -20,7 +23,7 @@ Then invoke from Claude Code — e.g. `Workflow({ name: "review-swarm", args: "/
 > **Heads-up:** `x-research` depends on a local `twitter` CLI at `~/.local/bin/twitter` — swap the `TW` block in the script for your own X-search tool if yours differs.
 
 ## Status
-🚧 Work in progress. The workflows are functional and tested end-to-end. Config sharing (`CLAUDE.md` / hooks) is planned **after** a privacy-sanitization pass — nothing personal is committed until then.
+🚧 Work in progress, but functional. Workflows are tested end-to-end. `config/` is a privacy-sanitized mirror of my `~/.claude` — username / absolute paths / secrets removed, personal identity & domain replaced with `_Personalize_` placeholders so it works as a reusable scaffold.
 
 ## Why this exists
 Notes-to-self, made reproducible: the orchestration patterns plus the gotchas that cost real debugging time — so the setup can be rebuilt, and so future-me doesn't relearn them.
