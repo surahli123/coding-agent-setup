@@ -1,5 +1,5 @@
 #!/bin/bash
-# PostToolUse hook for Edit|Write, async version (2026-05-16).
+# PostToolUse hook for Edit|Write, async version.
 #
 # Previous sync version blocked tool return for up to 40s
 # (10s ruff timeout + 30s pytest timeout) on every .py edit
@@ -17,7 +17,7 @@
 #     tail -f /tmp/cc-post-edit-pytest.log
 #
 # Rollback: previous sync version preserved at
-#   ~/.claude/hooks/post-edit-pytest.sh.bak-2026-05-16-*
+#   ~/.claude/hooks/post-edit-pytest.sh.bak-*
 
 set -uo pipefail
 

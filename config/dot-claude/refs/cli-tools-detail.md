@@ -24,6 +24,6 @@ running (check `opencli doctor`).
 
 Installed at `~/.local/bin/twitter` via `uv tool`.
 - Read a long-form X Article: `twitter article -m <url>` — errors with `not_found: no article content` on plain tweets
-- Read a plain tweet + replies: `twitter tweet <url>` (verified 2026-06-10; `article` does NOT work for these)
+- Read a plain tweet + replies: `twitter tweet <url>` (verified; `article` does NOT work for these)
 - Search tweets: `twitter search "<query>"`
 - Compact mode (LLM-friendly): `twitter -c <command>` — note: truncates long tweet text; drop `-c` when you need full text

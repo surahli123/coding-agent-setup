@@ -1,6 +1,6 @@
 # Reviewer Personas
 
-Detailed persona prompts moved out of `CLAUDE.md` on 2026-05-16 for token savings.
+Detailed persona prompts moved out of `CLAUDE.md` for token savings.
 Loaded on demand when running `/critique`, `/review`, or any multi-role review.
 
 ## General Rule

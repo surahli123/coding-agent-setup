@@ -1,5 +1,5 @@
 #!/bin/bash
-# PostToolUse hook: action ledger (2026-06-06).
+# PostToolUse hook: action ledger.
 #
 # WHY: makes Claude truthful "about what it has been doing." The harness — not
 # the model — records every Bash/Edit/Write action to a per-session ledger file.

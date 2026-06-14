@@ -4,9 +4,9 @@
 # are dispatched without isolation: "worktree".
 #
 # These agents explore git history and can switch branches,
-# which has caused commits landing on wrong branches (2026-03-24 incident).
+# which has caused commits landing on wrong branches (an earlier incident).
 #
-# 2026-05-16: rewrote from 2x python3 -c invocations to single grep parse.
+# rewrote from 2x python3 -c invocations to single grep parse.
 # Each Agent dispatch previously cost ~300ms in cold Python startup; with
 # 6-lane parallel reviews that was ~1.8s of serial hook overhead before
 # any subagent ran. grep parses the same JSON in ~5ms.

@@ -6,7 +6,7 @@
 # see what is being used and which plugins/skills are dead weight
 # eating context tokens at every session start.
 #
-# Bloat data (2026-05-19): 165+ skill dirs + ~512 plugin SKILL.md files
+# Bloat data: 165+ skill dirs + ~512 plugin SKILL.md files
 # load metadata each session. The 46 explicit "off" overrides in
 # settings.json help, but plugins kaizen / sdd / docs / reflexion / etc.
 # each contribute 5-15 more skills auto-load.

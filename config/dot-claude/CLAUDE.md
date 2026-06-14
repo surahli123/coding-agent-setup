@@ -87,7 +87,7 @@ Before calling the Agent tool, match the task to a specific subagent:
 **Never** dispatch `general-purpose` for implementation, review, or docs.
 Only fall back to `general-purpose` when no specialized agent fits AND the task genuinely needs a fresh context.
 
-**Never `haiku`** (banned 2026-06-13 — silent-fallback + exploration-accuracy risk). Anything that defaulted to Haiku (`Explore`, OMC `explore`/`writer`) routes to Sonnet. OMC plugin defaults are patched to sonnet and re-applied by the `omc-update` wrapper in `~/.zshrc`. If a dispatch can't be set to sonnet+, do NOT silently accept haiku — escalate.
+**Never `haiku`** (banned for silent-fallback + exploration-accuracy risk). Anything that defaulted to Haiku (`Explore`, OMC `explore`/`writer`) routes to Sonnet. OMC plugin defaults are patched to sonnet and re-applied by the `omc-update` wrapper in `~/.zshrc`. If a dispatch can't be set to sonnet+, do NOT silently accept haiku — escalate.
 
 **When Output Mode is caveman ultra**, append this block to the subagent prompt:
 ```

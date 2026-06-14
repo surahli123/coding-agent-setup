@@ -1,5 +1,5 @@
 #!/bin/bash
-# Stop hook: ledger reconciliation (2026-06-06).
+# Stop hook: ledger reconciliation.
 #
 # WHY: at the end of a turn that did real work, inject the harness-recorded
 # action ledger back into Claude's context so its summary of "what I did" can be

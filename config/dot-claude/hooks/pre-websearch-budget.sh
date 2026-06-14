@@ -3,8 +3,8 @@
 # Per-context WebSearch+WebFetch budget with intelligent routing suggestions.
 # Warn at 8, block at 15 (data-driven from p85/p95 of 136 sessions).
 #
-# Why this exists: 2026-05-17/18 sessions burned ~$429 with 48+ reflexive web
-# calls when 100% could have been routed to opencli (already installed).
+# Why this exists: earlier sessions burned hundreds of dollars with 48+
+# reflexive web calls when 100% could have been routed to opencli (already installed).
 #
 # Contract per CC docs (https://code.claude.com/docs/en/hooks):
 # - Input: JSON on stdin (tool_name, tool_input, session_id, agent_id?)
@@ -123,7 +123,7 @@ if (( count >= BLOCK_AT )); then
   # Emit hookSpecificOutput JSON for CC to render to model context (1C/1D).
   # NOTE: exit 2 as backstop — if CC fails to parse JSON, exit 2 still blocks
   # per the stderr-block contract. Belt-and-suspenders for fail-closed safety.
-  jq -n --arg reason "WebSearch budget exceeded (${count}/${BLOCK_AT} this context). Cause: 2026-05-17 spike (\$429 burn from 48 reflexive web calls). Replace this call with: ${suggestion}. Bypass for genuine research: export WEBSEARCH_BUDGET_BYPASS=1" \
+  jq -n --arg reason "WebSearch budget exceeded (${count}/${BLOCK_AT} this context). Cause: a prior spike (heavy burn from 48 reflexive web calls). Replace this call with: ${suggestion}. Bypass for genuine research: export WEBSEARCH_BUDGET_BYPASS=1" \
     '{hookSpecificOutput: {hookEventName: "PreToolUse", permissionDecision: "deny", permissionDecisionReason: $reason}}'
   echo "🛑 WebSearch budget exceeded (${count}/${BLOCK_AT}). Suggest: ${suggestion}" >&2
   exit 2
