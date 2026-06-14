@@ -17,6 +17,8 @@ cp workflows/*.js ~/.claude/workflows/
 ```
 Then invoke from Claude Code — e.g. `Workflow({ name: "review-swarm", args: "/abs/path/to/repo" })`. Each script's header documents its usage.
 
+> **Heads-up:** `x-research` depends on a local `twitter` CLI at `~/.local/bin/twitter` — swap the `TW` block in the script for your own X-search tool if yours differs.
+
 ## Status
 🚧 Work in progress. The workflows are functional and tested end-to-end. Config sharing (`CLAUDE.md` / hooks) is planned **after** a privacy-sanitization pass — nothing personal is committed until then.
 
