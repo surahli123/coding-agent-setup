@@ -1,6 +1,6 @@
-# claude-code-setup
+# coding-agent-setup
 
-My [Claude Code](https://claude.com/claude-code) setup — reusable workflows plus my privacy-sanitized `CLAUDE.md`, hooks, and settings.
+My coding-agent setup — reusable workflows plus privacy-sanitized Claude Code/OMC config, skills, hooks, and settings.
 
 ## Contents
 
@@ -9,7 +9,7 @@ My [Claude Code](https://claude.com/claude-code) setup — reusable workflows pl
   - `x-research.js` — X/Twitter deep research: 4 parallel Sonnet agents (4 lenses) → 1 Opus synthesis. Cost-disciplined (mechanical → Sonnet, synthesis → Opus).
 - **[`docs/`](docs/)** — how this setup is built
   - `building-workflows.md` — design decisions + the debugging lessons behind the workflows.
-- **[`config/`](config/)** — my privacy-sanitized Claude Code config (templated where personal)
+- **[`config/`](config/)** — my privacy-sanitized coding-agent config (templated where personal)
   - `CLAUDE.md` + `dot-claude/CLAUDE.md` — global instructions & subagent routing (identity/domain are `_Personalize_` placeholders).
   - `dot-claude/settings.json` + `dot-claude/hooks/` — permissions, hook wiring, and the hook scripts (ledger, gates, budgets).
   - `dot-claude/refs/` — lazy-loaded playbooks (circuit-breaker, evidence-first, karpathy, …) + rule rationale.
