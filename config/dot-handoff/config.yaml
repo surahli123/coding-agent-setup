@@ -1,0 +1,44 @@
+# handoff config — backend routing. (Mirrors ~/.handoff/config.yaml.)
+#
+# Stack used here: cheap execution = sonnet; codex = independent second opinion /
+# strong reasoning / parallel; opus = decisions / acceptance. Adjust to your own.
+# Restore from the upstream template if you break it:
+#   https://github.com/dazuiba/handoff/blob/main/cli/user_config_template.yaml
+#
+# First backend = default target. "{model}" -> resolved model ("--pro" uses pro_model).
+# "${VAR}" -> expands the same-named environment variable.
+#
+# Auth: the deepseek/opus backends below are `claude` backends — handoff launches
+# `claude -p`, which reuses your Claude Code subscription login (the macOS Keychain),
+# so NO API key is required. Do NOT add ANTHROPIC_API_KEY here: if it's absent it
+# expands to empty and breaks the persistent-login fallback. (Only key-injected
+# sandboxes need a temporary key — a special case, not for a real terminal.)
+#
+# macOS NOTE: claude backends need the Keychain patch or they fail with
+# "Not logged in". See docs/handoff-keychain-patch.md.
+
+backends:
+  # The `handoff-ds` skill hardcodes `--backend deepseek` -> redirected here to the
+  # cheap execution tier = sonnet. The name `deepseek` is kept only for skill
+  # compatibility; it actually runs sonnet.
+  deepseek:
+    type: claude
+    model: sonnet
+    pro_model: opus
+    env:
+      ANTHROPIC_MODEL: "{model}"
+
+  # The `handoff-opus` skill -> decision / acceptance tasks, uses opus.
+  opus:
+    type: claude
+    model: opus
+    pro_model: opus
+    env:
+      ANTHROPIC_MODEL: "{model}"
+
+  # The `handoff-codex` skill -> independent second opinion / strong reasoning /
+  # parallel work, uses codex. Local codex login, zero extra config.
+  codex:
+    type: codex
+    model: gpt-5.5
+    pro_model: gpt-5.5
