@@ -99,8 +99,8 @@ Version 1 backend: Claude Code Agent subagents.
 
 | User request | Router stance |
 | --- | --- |
-| `use $ce-plan` | Choose `planning-artifact`; preserve no-implementation boundary. |
+| `use /oh-my-claudecode:ralplan` | Choose `planning-artifact`; preserve no-implementation boundary. |
 | `use repo search` | Choose `repo-inspection`; use repo search or a read-only Explore agent for structural queries and `rg` for literal text. |
-| `use $team` | Choose `omc-runtime`; verify attached runtime or prepare handoff. |
+| `use /team` | Choose `omc-runtime`; verify attached runtime or prepare handoff. |
 | `use native subagents` | Choose `native-subagents`; split bounded independent packets. |
 | `use OpenRouter Fusion` | Choose `fusion-style-judge`; enforce provider, secret, and data boundaries. |

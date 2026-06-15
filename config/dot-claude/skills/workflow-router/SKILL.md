@@ -22,14 +22,14 @@ Run environment detection only when it can change the lane decision. Skip it for
 Run only enough detection to route when `omc-runtime`, `native-subagents`, browser/server state, external APIs, or long-running workflows are plausible candidates:
 
 ```bash
-env | sort | rg '^(OMC|CLAUDE|TMUX)'
+env | sed 's/=.*//' | sort | rg '^(OMC|CLAUDE)'
 ```
 
-If a local OMC CLI/status helper is installed, use it only when setup state can change the routing decision. Do not run setup diagnostics unless the task is setup/debug oriented.
+Inspect environment variable names only; do not print or paste environment values. If a local OMC CLI/status helper is installed, use it only when setup state can change the routing decision. Do not run setup diagnostics unless the task is setup/debug oriented.
 
 Classify OMC availability:
 
-- `attached`: OMC/TMUX/runtime signal is present and confirms active runtime state.
+- `attached`: OMC-specific runtime signal or status helper confirms active runtime state.
 - `cli-only`: OMC files or helpers exist, but no attached runtime signal is present.
 - `unavailable`: OMC is missing or unusable.
 
@@ -64,11 +64,11 @@ Default tendencies:
 
 ## Output Contract
 
-Use the short format in [routing-decision.md](templates/routing-decision.md). Keep it compact. The router is not a full plan generator.
+Use the short format in [routing-decision.md](templates/routing-decision.md). See [output-shapes.md](references/output-shapes.md) for the expanded shape and length budget. Keep it compact. The router is not a full plan generator.
 
 ## Fusion-Style Judge
 
-Use [fusion-style-review.md](references/fusion-style-review.md) when the wrong decision is expensive and independent perspectives can materially improve the outcome. Version 1 uses Claude Code Agent subagents only. OpenRouter Fusion is a future explicit backend, not the default.
+Use [fusion-style-review.md](references/fusion-style-review.md) when the wrong decision is expensive and independent perspectives can materially improve the outcome. Use [panel-judge-report.md](templates/panel-judge-report.md) when collecting independent judge outputs. Version 1 uses Claude Code Agent subagents only. OpenRouter Fusion is a future explicit backend, not the default.
 
 ## Promotion Discipline
 

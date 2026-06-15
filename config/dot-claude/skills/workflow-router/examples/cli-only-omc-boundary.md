@@ -3,7 +3,7 @@
 User asks:
 
 ```text
-Use $team for this multi-lane implementation.
+Use /team for this multi-lane implementation.
 ```
 
 Observed environment:
@@ -11,7 +11,7 @@ Observed environment:
 ```text
 OMC availability: cli-only
 - OMC files or helpers exist
-- no attached `OMC_*`, `CLAUDE_*`, or `TMUX` runtime signal is present
+- no attached OMC-specific runtime signal is present
 ```
 
 ## Routing Decision
@@ -23,7 +23,7 @@ OMC availability: cli-only
 | Environment | `OMC=cli-only`, `native_subagents=available`, `repo_search=available`, `web=not relevant` |
 | Recommended lane | `omc-runtime` handoff / launch decision |
 | Fallback lane | `native-subagents` for bounded read-only planning packets |
-| Why | User explicitly requested `$team`, but current session is not attached to OMC runtime. Router should preserve the request while preventing a silent runtime switch. |
+| Why | User explicitly requested `/team`, but current session is not attached to OMC runtime. Router should preserve the request while preventing a silent runtime switch. |
 
 ## Do
 

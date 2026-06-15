@@ -7,6 +7,7 @@ A privacy-sanitized mirror of my Claude Code config. Use it as a **scaffold, not
 - `dot-claude/` — mirrors `~/.claude/`:
   - `CLAUDE.md` — oh-my-claudecode layer + the subagent **routing table** (task → agent → model).
   - `settings.json` — permissions, env, and hook wiring.
+  - `skills/` — reusable Claude Code skills, including `workflow-router`.
   - `hooks/` — hook scripts: action-ledger, test/merge gates, budget checks, skill-usage nudges.
   - `refs/` + `refs/playbooks/` — lazy-loaded detail, loaded on trigger (not resident in context).
 

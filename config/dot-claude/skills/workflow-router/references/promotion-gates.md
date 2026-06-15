@@ -22,10 +22,10 @@ Use this before promoting router lessons into CLAUDE.md or global resident guida
 
 ```md
 <workflow_router>
-Use `$workflow-router` before choosing an execution lane when the task is ambiguous, multi-track, high-risk, review-locked, long-running, or mainly about selecting the right agent/workflow surface.
+Use the `workflow-router` skill before choosing an execution lane when the task is ambiguous, multi-track, high-risk, review-locked, long-running, or mainly about selecting the right agent/workflow surface.
 
 The router is a lane-selection aid. It may recommend direct chat, solo execution, repo inspection, native subagents, planning artifacts, review gates, OMC runtime, or Fusion-style judge review. It must not widen scope, bypass approval gates, or start OMC runtime flows unless the session is actually attached to OMC runtime or the user explicitly asks to launch them.
 
-In Claude Code / cli-only OMC contexts, `$workflow-router` may recommend OMC commands or handoff into OMC, but it must not silently launch team, ralph, detached tmux sessions, or long-running runtime modes.
+In Claude Code / cli-only OMC contexts, `workflow-router` may recommend OMC commands or handoff into OMC, but it must not silently launch team, ralph, detached tmux sessions, or long-running runtime modes.
 </workflow_router>
 ```

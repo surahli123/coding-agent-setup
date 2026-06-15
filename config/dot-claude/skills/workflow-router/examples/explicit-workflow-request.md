@@ -3,7 +3,7 @@
 User asks:
 
 ```text
-Use $ce-plan to turn this discussion into a plan.
+Use /oh-my-claudecode:ralplan to turn this discussion into a plan.
 ```
 
 ## Routing Decision
@@ -15,17 +15,17 @@ Use $ce-plan to turn this discussion into a plan.
 | Environment | skipped because runtime detection cannot change the lane |
 | Recommended lane | `planning-artifact` |
 | Fallback lane | direct structured plan if skill unavailable |
-| Why | User explicitly named `$ce-plan`; router should preserve the planning boundary rather than rerouting to execution. |
+| Why | User explicitly named the OMC planning workflow; router should preserve the planning boundary rather than rerouting to execution. |
 
 ## Do
 
-- Load and follow `$ce-plan`.
+- Load and follow `/oh-my-claudecode:ralplan`.
 - Keep the output as a durable plan.
 - Preserve the no-implementation boundary.
 
 ## Do Not
 
-- Start `$ce-work`, `$team`, or implementation without a new explicit request.
+- Start `/team`, ralph, or implementation without a new explicit request.
 - Expand scope beyond the discussion.
 
 ## Escalation Gates
