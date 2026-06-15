@@ -9,6 +9,7 @@ My coding-agent setup — reusable workflows plus privacy-sanitized Claude Code/
   - `x-research.js` — X/Twitter deep research: 4 parallel Sonnet agents (4 lenses) → 1 Opus synthesis. Cost-disciplined (mechanical → Sonnet, synthesis → Opus).
 - **[`docs/`](docs/)** — how this setup is built
   - `building-workflows.md` — design decisions + the debugging lessons behind the workflows.
+  - [`handoff-setup.md`](docs/handoff-setup.md) — set up the Claude Code ⇄ Codex *handoff* bridge: install, config, and the macOS Keychain patch.
 - **[`config/`](config/)** — my privacy-sanitized coding-agent config (templated where personal)
   - `CLAUDE.md` + `dot-claude/CLAUDE.md` — global instructions & subagent routing (identity/domain are `_Personalize_` placeholders).
   - `dot-claude/settings.json` + `dot-claude/hooks/` — permissions, hook wiring, and the hook scripts (ledger, gates, budgets).
